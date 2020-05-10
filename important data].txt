@@ -1,0 +1,40 @@
+300 , 415
+500 , 540 for cactus
+
+200 , 250 
+280 , 430
+
+
+import pyautogui  #pip install pyautogui
+from PIL import Image   #pip install pillow
+from PIL import ImageGrab
+from time import sleep
+# from numpy import asarray #pip install numpy
+
+def pressKey(key):
+    pyautogui.keyDown(key)
+
+def isCollide(data):
+    for i in range(300, 415):       # 300, 415
+        for j in range(500, 540):   #600 , 650
+            if data[i, j] < 0:
+                return True
+
+    
+
+
+
+if __name__ == '__main__':
+    print("Hey User ... Dino game is about to start in 4 seconds")
+    sleep(4)
+    pressKey("up")
+    while True:
+        image = ImageGrab.grab().convert('L')
+        data = image.load()
+        if isCollide(data):
+            pressKey("up")
+        # print(asarray(image))
+        # for i in range(300, 415):       # 300, 415
+        #     for j in range(500, 540):   #600 , 650
+        #         data[i, j] = 0
+        # image.show()
